@@ -967,6 +967,192 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);fon
   .emb-footer{flex-wrap:wrap;gap:6px;padding:10px 12px}
   .emb-ind-count{font-size:12px}
 }
+
+/* ═══ TELA PRIMEIRO ACESSO ══════════════════════════════════════════════ */
+#primeiro-acesso{
+  position:fixed;inset:0;z-index:250;
+  display:none;
+  align-items:center;justify-content:center;
+  background:url('https://i.ibb.co/39zccHn2/image-499adc1c.png') center/cover no-repeat;
+}
+#primeiro-acesso.open{display:flex}
+.pa-card{
+  background:rgba(10,26,16,0.72);
+  border:1px solid rgba(201,168,76,0.35);
+  border-radius:var(--r3);
+  padding:44px 40px 36px;
+  width:100%;max-width:400px;
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  position:relative;overflow:hidden;
+  box-shadow:0 20px 60px rgba(0,0,0,0.4);
+}
+.pa-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1.5px;
+  background:linear-gradient(90deg,transparent,var(--ouro3),var(--ouro5),var(--ouro3),transparent);
+}
+.pa-icon{
+  font-size:36px;text-align:center;
+  display:block;margin-bottom:16px;
+}
+.pa-title{
+  font-family:'Cinzel',serif;
+  font-size:20px;color:#f5f0e8;
+  letter-spacing:3px;font-weight:400;
+  text-align:center;margin-bottom:8px;
+}
+.pa-sub{
+  font-size:13px;color:rgba(245,240,232,0.65);
+  text-align:center;line-height:1.8;
+  margin-bottom:28px;font-weight:300;
+}
+.pa-divider{
+  width:50px;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(201,168,76,0.5),transparent);
+  margin:0 auto 24px;
+}
+.pa-success{
+  background:rgba(42,90,56,0.3);
+  border:1px solid rgba(42,90,56,0.4);
+  border-radius:var(--r);
+  padding:16px;
+  text-align:center;
+  font-size:13px;
+  color:rgba(180,230,180,0.9);
+  display:none;
+  margin-top:16px;
+  line-height:1.8;
+  font-weight:300;
+}
+.pa-success.show{display:block}
+
+
+/* ── SUB-ATIVIDADES ──────────────────────────────────────────────────── */
+.sub-items-wrap{
+  margin-top:6px;margin-left:20px;
+  border-left:2px solid var(--border2);
+  padding-left:12px;
+}
+.sub-item-row{
+  display:grid;
+  grid-template-columns:1fr 90px 32px;
+  gap:6px;align-items:center;
+  padding:7px 10px;
+  background:var(--cream2);
+  border:1px solid var(--border3);
+  border-radius:var(--r);
+  margin-bottom:4px;
+  font-size:12px;
+  color:var(--text);
+  transition:all 0.2s;
+}
+.sub-item-row:hover{border-color:var(--border);background:white}
+.sub-item-nome{font-size:12px;color:var(--text2);font-weight:300}
+.add-sub-btn{
+  font-size:10px;color:var(--ouro);
+  background:none;border:none;
+  cursor:pointer;letter-spacing:1px;
+  font-family:'Jost',sans-serif;
+  padding:3px 6px;
+  transition:color 0.2s;
+  text-align:left;
+}
+.add-sub-btn:hover{color:var(--verde)}
+.del-btn{
+  background:none;border:none;
+  color:var(--text4);cursor:pointer;
+  font-size:13px;padding:3px 5px;
+  transition:color 0.2s;
+  border-radius:4px;
+}
+.del-btn:hover{color:#b43030;background:rgba(180,48,48,0.08)}
+.toggle-sub-btn{
+  background:none;border:none;
+  color:var(--ouro2);cursor:pointer;
+  font-size:11px;padding:2px 6px;
+  letter-spacing:0.5px;
+  font-family:'Jost',sans-serif;
+  transition:color 0.2s;
+}
+.toggle-sub-btn:hover{color:var(--verde)}
+
+/* ── FOLLOW-UP ──────────────────────────────────────────────────────── */
+.followup-wrap{
+  margin:8px 0 4px 0;
+  border-top:1px solid var(--border3);
+  padding-top:8px;
+}
+.followup-title{
+  font-size:9px;letter-spacing:2px;color:var(--ouro2);
+  text-transform:uppercase;font-weight:400;margin-bottom:6px;
+  display:flex;align-items:center;gap:6px;cursor:pointer;
+}
+.followup-title::after{content:'▾';font-size:10px;transition:transform 0.2s}
+.followup-title.open::after{transform:rotate(-180deg)}
+.followup-list{display:none;margin-bottom:6px}
+.followup-list.open{display:block}
+.followup-entry{
+  background:var(--cream2);
+  border:1px solid var(--border3);
+  border-radius:var(--r);
+  padding:8px 10px;
+  margin-bottom:4px;
+  font-size:11px;color:var(--text2);
+  font-weight:300;line-height:1.6;
+}
+.followup-meta{
+  font-size:9px;color:var(--text4);
+  margin-bottom:3px;letter-spacing:0.5px;
+}
+.followup-form{display:flex;gap:6px;align-items:flex-start;margin-top:4px}
+.followup-input{
+  flex:1;padding:7px 10px;
+  background:var(--parch);border:1px solid var(--border2);
+  color:var(--text);font-family:'Jost',sans-serif;font-size:12px;font-weight:300;
+  outline:none;border-radius:var(--r);resize:none;min-height:36px;
+}
+.followup-input:focus{border-color:var(--ouro3);background:white}
+.followup-send{
+  padding:7px 12px;background:var(--verde2);color:var(--cream);
+  border:none;cursor:pointer;font-size:11px;border-radius:var(--r);
+  font-family:'Jost',sans-serif;letter-spacing:1px;white-space:nowrap;
+  transition:background 0.2s;
+}
+.followup-send:hover{background:var(--verde3)}
+
+/* ── UPLOAD ──────────────────────────────────────────────────────────── */
+.upload-wrap{
+  margin-top:6px;
+  border-top:1px solid var(--border3);
+  padding-top:6px;
+}
+.upload-title{
+  font-size:9px;letter-spacing:2px;color:var(--text4);
+  text-transform:uppercase;font-weight:400;margin-bottom:5px;
+  display:flex;align-items:center;gap:6px;cursor:pointer;
+}
+.upload-title::after{content:'▾';font-size:10px;transition:transform 0.2s}
+.upload-title.open::after{transform:rotate(-180deg)}
+.upload-list{display:none;margin-bottom:5px}
+.upload-list.open{display:block}
+.upload-file-item{
+  display:flex;align-items:center;gap:6px;
+  padding:5px 8px;background:var(--cream2);
+  border:1px solid var(--border3);border-radius:var(--r);
+  margin-bottom:3px;font-size:11px;color:var(--text2);
+}
+.upload-file-item a{color:var(--verde3);text-decoration:none;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.upload-file-item a:hover{text-decoration:underline}
+.upload-file-meta{font-size:9px;color:var(--text4);white-space:nowrap}
+.upload-area{
+  border:1.5px dashed var(--border);border-radius:var(--r);
+  padding:8px 12px;text-align:center;
+  font-size:11px;color:var(--text4);cursor:pointer;
+  transition:all 0.2s;background:var(--parch);
+}
+.upload-area:hover{border-color:var(--verde3);color:var(--verde3)}
+.upload-input{display:none}
+
 </style>
 </head>
 <body>
@@ -991,14 +1177,39 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);fon
         <input type="password" class="f-input" id="l-pass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()" style="margin-bottom:4px">
         <button class="btn-primary" onclick="doLogin()"><span class="shine"></span>Entrar</button>
         <div class="f-err" id="l-err"></div>
-        <div style="text-align:center;margin-top:12px">
-          <button onclick="doReset()" style="background:none;border:none;color:var(--ouro3);font-size:11px;cursor:pointer;letter-spacing:1px;text-decoration:underline;font-family:'Jost',sans-serif;font-weight:300">Esqueci minha senha</button>
+        <div style="text-align:center;margin-top:12px;display:flex;flex-direction:column;gap:8px">
+          <button onclick="doReset()" style="background:none;border:none;color:rgba(245,240,232,0.55);font-size:11px;cursor:pointer;letter-spacing:1px;text-decoration:underline;font-family:'Jost',sans-serif;font-weight:300">Esqueci minha senha</button>
+          <button onclick="abrirPA()" style="background:rgba(201,168,76,0.12);border:1px solid rgba(201,168,76,0.3);color:var(--ouro3);font-size:11px;cursor:pointer;letter-spacing:1px;font-family:'Cinzel',sans-serif;font-weight:400;padding:8px 16px;border-radius:20px;transition:all 0.2s">Primeiro acesso — definir senha</button>
         </div>
       </div>
     </div>
     <div class="login-footer">Acesso restrito · ESA Capital e Energia</div>
   </div>
 </div>
+<!-- TELA PRIMEIRO ACESSO -->
+<div id="primeiro-acesso">
+  <div style="position:relative;z-index:2;width:100%;max-width:400px;padding:20px">
+    <div class="pa-card">
+      <span class="pa-icon">🔐</span>
+      <div class="pa-title">Primeiro Acesso</div>
+      <div class="pa-divider"></div>
+      <div class="pa-sub">Digite o e-mail cadastrado pelo administrador.<br>Enviaremos um link para você criar sua senha.</div>
+      <label class="f-label">E-mail</label>
+      <input type="email" class="f-input" id="pa-email" placeholder="seu@esacapitalenergia.com.br">
+      <button class="btn-primary" onclick="enviarLinkSenha()" style="margin-top:4px"><span class="shine"></span>Enviar link de acesso</button>
+      <div class="pa-success" id="pa-success">
+        ✓ Link enviado!<br>
+        Verifique sua caixa de entrada e spam.<br>
+        <span style="font-size:11px;opacity:0.7">O link expira em 1 hora.</span>
+      </div>
+      <div class="f-err" id="pa-err"></div>
+      <div style="text-align:center;margin-top:20px">
+        <button onclick="fecharPA()" style="background:none;border:none;color:rgba(245,240,232,0.5);font-size:11px;cursor:pointer;letter-spacing:1px;font-family:'Jost',sans-serif;font-weight:300">← Voltar ao login</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- APP -->
 <div id="app">
@@ -1274,10 +1485,29 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);fon
   <h3 id="m-item-title">Nova entrega</h3>
   <input type="hidden" id="mi-id"><input type="hidden" id="mi-tid">
   <div class="f-group"><label class="f-label">Nome da entrega</label><input type="text" class="f-input" id="mi-nome" placeholder="Descreva a entrega"></div>
-  <div class="form-grid"><div class="f-group"><label class="f-label">Responsável</label><input type="text" class="f-input" id="mi-resp" placeholder="Ex: Lucas, Pedro"></div><div class="f-group"><label class="f-label">Prazo</label><input type="text" class="f-input" id="mi-prazo" placeholder="Jun/15, Urgente"></div></div>
+  <div class="form-grid"><div class="f-group"><label class="f-label">Responsável</label><input type="text" class="f-input" id="mi-resp" placeholder="Ex: Lucas, Jéssica"></div><div class="f-group"><label class="f-label">Prazo</label><input type="text" class="f-input" id="mi-prazo" placeholder="Jun/15, Urgente"></div></div>
   <div class="f-group"><label class="f-label">Status</label><select class="f-input" id="mi-status"><option value="pendente">Pendente</option><option value="andamento">Em andamento</option><option value="critico">Crítico</option><option value="ok">Concluído</option><option value="bloqueado">Aguarda anterior</option></select></div>
   <div class="f-group"><label class="f-label">Observação</label><textarea class="f-input" id="mi-obs" style="height:60px;resize:vertical" placeholder="Dependências..."></textarea></div>
   <div class="modal-actions"><button class="btn-secondary" onclick="closeModal('m-item')">Cancelar</button><button class="btn-gold" onclick="saveItem()">Salvar</button></div>
+</div></div>
+
+<!-- MODAL SUB-ATIVIDADE -->
+<div class="modal-overlay" id="m-sub"><div class="modal">
+  <button class="modal-close" onclick="closeModal('m-sub')">✕</button>
+  <h3 id="m-sub-title">Nova sub-atividade</h3>
+  <input type="hidden" id="ms-tid">
+  <input type="hidden" id="ms-iid">
+  <input type="hidden" id="ms-sid">
+  <div class="f-group"><label class="f-label">Descrição</label><input type="text" class="f-input" id="ms-nome" placeholder="Descreva a sub-atividade"></div>
+  <div class="f-group"><label class="f-label">Status</label>
+    <select class="f-input" id="ms-status">
+      <option value="pendente">Pendente</option>
+      <option value="andamento">Em andamento</option>
+      <option value="critico">Crítico</option>
+      <option value="ok">Concluído</option>
+    </select>
+  </div>
+  <div class="modal-actions"><button class="btn-secondary" onclick="closeModal('m-sub')">Cancelar</button><button class="btn-gold" onclick="saveSub()">Salvar</button></div>
 </div></div>
 
 <div class="modal-overlay" id="m-user"><div class="modal">
@@ -1289,6 +1519,20 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);fon
   <div class="f-group"><label class="f-label">Senha</label><input type="password" class="f-input" id="mu-senha" placeholder="Mínimo 6 caracteres" autocomplete="new-password"></div>
   <div class="f-group"><label class="f-label">Perfil de acesso</label><select class="f-input" id="mu-role"><option value="diretoria">Diretoria — Acesso total</option><option value="embaixador">Embaixador — Programa + Oportunidades</option><option value="time">Time ESA — Programa + Evento + Embaixadores</option></select></div>
   <div class="modal-actions"><button class="btn-secondary" onclick="closeModal('m-user')">Cancelar</button><button class="btn-gold" onclick="saveUser()">Criar usuário</button></div>
+</div></div>
+
+<!-- MODAL FOLLOW-UP -->
+<div class="modal-overlay" id="m-followup"><div class="modal" style="max-width:480px">
+  <button class="modal-close" onclick="closeModal('m-followup')">✕</button>
+  <h3 id="m-followup-title">Follow-up</h3>
+  <input type="hidden" id="mfu-tid">
+  <input type="hidden" id="mfu-iid">
+  <input type="hidden" id="mfu-sid">
+  <div class="f-group">
+    <label class="f-label">Registro</label>
+    <textarea class="f-input" id="mfu-texto" style="height:100px;resize:vertical" placeholder="O que aconteceu? Próximos passos?"></textarea>
+  </div>
+  <div class="modal-actions"><button class="btn-secondary" onclick="closeModal('m-followup')">Cancelar</button><button class="btn-gold" onclick="saveFollowup()">Registrar</button></div>
 </div></div>
 
 <div class="toast" id="toast"></div>
@@ -1351,10 +1595,11 @@ const app=initializeApp(cfg),auth=getAuth(app),db=getDatabase(app);
 let currentRole='diretoria',currentUid=null;
 
 const TD=[
-  {id:"logistica",nome:"Logística do evento",num:"01",itens:[{nome:"Data e local confirmados",resp:"Lucas",prazo:"Urgente",status:"critico",obs:"Bloqueia tudo"},{nome:"Lista de convidados — 15 + acompanhantes",resp:"Lucas",prazo:"Jun/2",status:"critico",obs:""},{nome:"Cenografia Sol Invictus",resp:"A definir",prazo:"Jun/3",status:"pendente",obs:""},{nome:"Jantar / buffet / equipe",resp:"A definir",prazo:"Jun/3",status:"pendente",obs:""},{nome:"Mestre de cerimônias",resp:"A definir",prazo:"Jun/2",status:"pendente",obs:""},{nome:"Convite impresso e digital",resp:"ESA",prazo:"Jun/2",status:"bloqueado",obs:"Depende da data"}]},
+  {id:"logistica",nome:"Estrutura do Evento",num:"01",itens:[{nome:"Data e local confirmados",resp:"Lucas",prazo:"Urgente",status:"critico",obs:"Bloqueia tudo"},{nome:"Lista de convidados — 15 + acompanhantes",resp:"Lucas",prazo:"Jun/2",status:"critico",obs:""},{nome:"Cenografia Sol Invictus",resp:"A definir",prazo:"Jun/3",status:"pendente",obs:""},{nome:"Jantar / buffet / equipe",resp:"A definir",prazo:"Jun/3",status:"pendente",obs:""},{nome:"Mestre de cerimônias",resp:"A definir",prazo:"Jun/2",status:"pendente",obs:""},{nome:"Convite impresso e digital",resp:"ESA",prazo:"Jun/2",status:"bloqueado",obs:"Depende da data"}]},
   {id:"programa",nome:"Programa Embaixadores",num:"02",itens:[{nome:"Regulamento completo v1",resp:"Lucas",prazo:"Concluído",status:"ok",obs:""},{nome:"Adendo co-propriedade SPE",resp:"Jurídico",prazo:"Jun/3",status:"critico",obs:""},{nome:"Kit embaixador — caixa, jaqueta, moeda",resp:"A definir",prazo:"Jun/2",status:"pendente",obs:""},{nome:"Carta de boas-vindas",resp:"Lucas",prazo:"Jun/3",status:"pendente",obs:""}]},
   {id:"conteudo",nome:"Conteúdo e apresentação",num:"03",itens:[{nome:"Apresentação principal do evento",resp:"Lucas",prazo:"Jun/2",status:"andamento",obs:""},{nome:"Vídeo institucional Sol Invictus",resp:"A definir",prazo:"Jun/3",status:"pendente",obs:""},{nome:"Painel de prova social",resp:"Lucas",prazo:"Urgente",status:"critico",obs:"Precisa dos dados"},{nome:"Manifesto impresso para a caixa",resp:"Claude",prazo:"Jun/1",status:"andamento",obs:""}]},
-  {id:"investimento",nome:"Investimento · Usinas",num:"04",itens:[{nome:"Estrutura jurídica SPE definida",resp:"Jurídico",prazo:"Urgente",status:"critico",obs:"Bloqueia materiais"},{nome:"One-pager usinas 300kW",resp:"Pedro",prazo:"Jun/3",status:"bloqueado",obs:"Depende da SPE"},{nome:"One-pager usinas 75kW",resp:"Pedro",prazo:"Jun/3",status:"bloqueado",obs:"Depende da SPE"}]}
+  {id:"investimento",nome:"Investimento · Usinas",num:"04",itens:[{nome:"Estrutura jurídica SPE definida",resp:"Jurídico",prazo:"Urgente",status:"critico",obs:"Bloqueia materiais"},{nome:"One-pager usinas 300kW",resp:"Pedro",prazo:"Jun/3",status:"bloqueado",obs:"Depende da SPE"},{nome:"One-pager usinas 75kW",resp:"Pedro",prazo:"Jun/3",status:"bloqueado",obs:"Depende da SPE"}]},
+  {id:"marketing",nome:"Marketing — Demandas",num:"05",itens:[{nome:"Exemplo: Post redes sociais evento",resp:"Jéssica Macedo",prazo:"A definir",status:"pendente",obs:"Remova este item e adicione suas demandas"}]}
 ];
 
 const AD={
@@ -1383,12 +1628,48 @@ window.doLogout=async function(){await signOut(auth);};
 window.doReset=async function(){
   const e=document.getElementById('l-email').value.trim();
   const err=document.getElementById('l-err');
-  if(!e){err.style.color='var(--ouro2)';err.textContent='Digite seu e-mail acima primeiro.';return;}
+  if(!e){err.style.color='var(--ouro3)';err.textContent='Digite seu e-mail acima primeiro.';return;}
   try{
     const {sendPasswordResetEmail}=await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js');
     await sendPasswordResetEmail(auth,e);
-    err.style.color='var(--verde3)';err.textContent='E-mail de redefinição enviado! Verifique sua caixa de entrada.';
-  }catch(ex){err.style.color='#8b2020';err.textContent='Erro: verifique o e-mail digitado.';}
+    err.style.color='#7acf9a';err.textContent='✓ E-mail enviado! Verifique sua caixa de entrada e spam.';
+  }catch(ex){err.style.color='#e08080';err.textContent='Erro: verifique o e-mail digitado.';}
+};
+
+window.abrirPA=function(){
+  document.getElementById('primeiro-acesso').classList.add('open');
+  document.getElementById('pa-email').value='';
+  document.getElementById('pa-err').textContent='';
+  document.getElementById('pa-success').classList.remove('show');
+};
+
+window.fecharPA=function(){
+  document.getElementById('primeiro-acesso').classList.remove('open');
+};
+
+window.enviarLinkSenha=async function(){
+  const e=document.getElementById('pa-email').value.trim();
+  const err=document.getElementById('pa-err');
+  const suc=document.getElementById('pa-success');
+  err.textContent='';suc.classList.remove('show');
+  if(!e){err.style.color='#e08080';err.textContent='Digite seu e-mail.';return;}
+  try{
+    const {sendPasswordResetEmail}=await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js');
+    await sendPasswordResetEmail(auth,e);
+    suc.classList.add('show');
+    document.getElementById('pa-email').value='';
+    // Voltar ao login após 4s
+    setTimeout(()=>{
+      fecharPA();
+    },5000);
+  }catch(ex){
+    err.style.color='#e08080';
+    if(ex.code==='auth/user-not-found'){
+      err.textContent='E-mail não cadastrado. Contate o administrador.';
+    }else{
+      err.textContent='Erro ao enviar. Verifique o e-mail digitado.';
+    }
+  }
 };
 
 onAuthStateChanged(auth,async u=>{
@@ -1464,9 +1745,92 @@ function loadTrilhas(){
   onValue(ref(db,'trilhas'),snap=>{
     let data=snap.val();
     if(!data){const def={};TD.forEach(t=>{def[t.id]={nome:t.nome,num:t.num,itens:{}};t.itens.forEach(item=>{const k=push(ref(db,`trilhas/${t.id}/itens`)).key;def[t.id].itens[k]=item;});});set(ref(db,'trilhas'),def);return;}
+    // Sync nome da trilha logistica se ainda está com nome antigo
+    if(data.logistica&&data.logistica.nome==='Logística do evento'){
+      update(ref(db,'trilhas/logistica'),{nome:'Estrutura do Evento'});
+      data.logistica.nome='Estrutura do Evento';
+    }
     renderTrilhas(data);
   });
 }
+// Toggle collapsible follow-up / upload sections
+window.toggleSection=function(el,targetId){
+  el.classList.toggle('open');
+  const t=document.getElementById(targetId);
+  if(t)t.classList.toggle('open');
+};
+
+function fmtDate(){return new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'});}
+
+// Follow-up em atividade
+window.addFollowupItem=async function(tid,iid){
+  const el=document.getElementById(`fu-input-${iid}`);
+  const txt=el?el.value.trim():'';
+  if(!txt){showToast('Digite o follow-up');return;}
+  const snap=await new Promise(r=>onValue(ref(db,'usuarios/'+currentUid),r,{onlyOnce:true}));
+  const autor=(snap.val()||{}).nome||'Equipe';
+  await push(ref(db,`trilhas/${tid}/itens/${iid}/followups`),{texto:txt,autor,data:fmtDate(),ts:Date.now()});
+  showToast('Follow-up registrado');
+};
+
+// Follow-up em sub-atividade
+window.addFollowupSub=async function(tid,iid,sid){
+  const el=document.getElementById(`fu-input-sub-${sid}`);
+  const txt=el?el.value.trim():'';
+  if(!txt){showToast('Digite o follow-up');return;}
+  const snap=await new Promise(r=>onValue(ref(db,'usuarios/'+currentUid),r,{onlyOnce:true}));
+  const autor=(snap.val()||{}).nome||'Equipe';
+  await push(ref(db,`trilhas/${tid}/itens/${iid}/subs/${sid}/followups`),{texto:txt,autor,data:fmtDate(),ts:Date.now()});
+  showToast('Follow-up registrado');
+};
+
+// Upload em atividade — salva base64 no Firebase (arquivos pequenos)
+window.handleUploadItem=async function(event,tid,iid){
+  const files=Array.from(event.target.files);
+  for(const file of files){
+    const reader=new FileReader();
+    reader.onload=async e=>{
+      await push(ref(db,`trilhas/${tid}/itens/${iid}/uploads`),{
+        nome:file.name,url:e.target.result,data:fmtDate(),tipo:file.type
+      });
+      showToast(`${file.name} salvo`);
+    };
+    reader.readAsDataURL(file);
+  }
+};
+
+// Upload em sub-atividade
+window.handleUploadSub=async function(event,tid,iid,sid){
+  const files=Array.from(event.target.files);
+  for(const file of files){
+    const reader=new FileReader();
+    reader.onload=async e=>{
+      await push(ref(db,`trilhas/${tid}/itens/${iid}/subs/${sid}/uploads`),{
+        nome:file.name,url:e.target.result,data:fmtDate(),tipo:file.type
+      });
+      showToast(`${file.name} salvo`);
+    };
+    reader.readAsDataURL(file);
+  }
+};
+
+function renderFollowups(followups,iid,sufix=''){
+  if(!followups.length)return'';
+  return followups.map(([,fu])=>`
+    <div class="followup-entry">
+      <div class="followup-meta">${fu.autor||'—'} · ${fu.data||''}</div>
+      ${fu.texto}
+    </div>
+  `).join('');
+}
+
+function renderUploads(uploads){
+  if(!uploads.length)return'';
+  return uploads.map(([,f])=>`
+    <div class="upload-file-item">📎 <a href="${f.url}" target="_blank" download="${f.nome}">${f.nome}</a><span class="upload-file-meta">${f.data||''}</span></div>
+  `).join('');
+}
+
 function renderTrilhas(data){
   const w=document.getElementById('trilhas-wrap');w.innerHTML='';
   let tot=0,crit=0,ok=0;
@@ -1477,7 +1841,90 @@ function renderTrilhas(data){
     s.innerHTML=`<div class="trilha-hdr"><div class="trilha-title"><span class="trilha-num">${t.num||''}</span>${t.nome}</div>${currentRole!=='embaixador'?`<button class="btn-secondary" style="font-size:10px;padding:5px 12px" onclick="openAddItem('${tid}')">+ Item</button>`:''}</div><div class="col-hdr"><div class="ch">Entrega</div><div class="ch">Responsável</div><div class="ch">Prazo</div><div class="ch">Status</div><div class="ch"></div></div><div id="it-${tid}"></div>`;
     w.appendChild(s);
     const ic=document.getElementById(`it-${tid}`);
-    itens.forEach(([iid,item])=>{const r=document.createElement('div');r.className='item-row';r.innerHTML=`<div><div class="item-nome">${item.nome}</div>${item.obs?`<div class="item-dep">${item.obs}</div>`:''}</div><div class="item-resp">${item.resp||'—'}</div><div class="item-prazo">${item.prazo||'—'}</div><div><span class="badge ${item.status||'pendente'}">${lS(item.status)}</span></div>${currentRole!=='embaixador'?`<button class="edit-btn" onclick="editItem('${tid}','${iid}')">✎</button>`:'<div></div>'}`;ic.appendChild(r);});
+    itens.forEach(([iid,item])=>{
+      const subs=item.subs?Object.entries(item.subs):[];
+      const subCount=subs.length;
+      const subDoneCount=subs.filter(([,sub])=>sub.status==='ok').length;
+      const followups=Object.entries(item.followups||{}).sort((a,b)=>b[1].ts-a[1].ts);
+      const uploads=Object.entries(item.uploads||{});
+      const r=document.createElement('div');
+      r.id=`item-wrap-${iid}`;
+      r.innerHTML=`
+        <div class="item-row" style="flex-wrap:wrap">
+          <div style="grid-column:1">
+            <div class="item-nome">${item.nome}</div>
+            ${item.obs?`<div class="item-dep">${item.obs}</div>`:''}
+            ${subCount>0?`<div style="font-size:10px;color:var(--ouro2);margin-top:3px;font-weight:300">${subDoneCount}/${subCount} sub-atividades concluídas</div>`:''}
+          </div>
+          <div class="item-resp">${item.resp||'—'}</div>
+          <div class="item-prazo">${item.prazo||'—'}</div>
+          <div><span class="badge ${item.status||'pendente'}">${lS(item.status)}</span></div>
+          ${currentRole!=='embaixador'?`
+          <div style="display:flex;gap:4px;align-items:center">
+            <button class="edit-btn" onclick="editItem('${tid}','${iid}')" title="Editar">✎</button>
+            <button class="del-btn" onclick="delItem('${tid}','${iid}')" title="Excluir">🗑</button>
+          </div>`:'<div></div>'}
+        </div>
+        <!-- SUB-ATIVIDADES -->
+        <div class="sub-items-wrap" id="subs-${tid}-${iid}" style="${subCount>0?'':'display:none'}">
+          ${subs.map(([sid,sub])=>{
+            const sfus=Object.entries(sub.followups||{}).sort((a,b)=>b[1].ts-a[1].ts);
+            const sups=Object.entries(sub.uploads||{});
+            return`<div class="sub-item-row" id="sub-row-${sid}" style="display:block;padding:8px 10px">
+              <div style="display:grid;grid-template-columns:1fr 90px 32px;gap:6px;align-items:center">
+                <div class="sub-item-nome">${sub.nome}</div>
+                <select class="f-input" style="padding:4px 8px;font-size:11px;height:28px;margin:0" onchange="updateSubStatus('${tid}','${iid}','${sid}',this.value)">
+                  <option value="pendente" ${sub.status==='pendente'?'selected':''}>Pendente</option>
+                  <option value="andamento" ${sub.status==='andamento'?'selected':''}>Andamento</option>
+                  <option value="critico" ${sub.status==='critico'?'selected':''}>Crítico</option>
+                  <option value="ok" ${sub.status==='ok'?'selected':''}>Concluído</option>
+                </select>
+                <button class="del-btn" onclick="delSub('${tid}','${iid}','${sid}')" title="Excluir">🗑</button>
+              </div>
+              <div class="followup-wrap">
+                <div class="followup-title" onclick="toggleSection(this,'fu-sub-${sid}')">Follow-up${sfus.length>0?' ('+sfus.length+')':''}</div>
+                <div class="followup-list" id="fu-sub-${sid}">
+                  ${renderFollowups(sfus,iid,'sub-'+sid)}
+                  <div class="followup-form">
+                    <textarea class="followup-input" id="fu-input-sub-${sid}" placeholder="Registrar follow-up..." rows="1"></textarea>
+                    <button class="followup-send" onclick="addFollowupSub('${tid}','${iid}','${sid}')">Registrar</button>
+                  </div>
+                </div>
+              </div>
+              <div class="upload-wrap">
+                <div class="upload-title" onclick="toggleSection(this,'up-sub-${sid}')">Arquivos${sups.length>0?' ('+sups.length+')':''}</div>
+                <div class="upload-list" id="up-sub-${sid}">
+                  ${renderUploads(sups)}
+                  <label class="upload-area"><input type="file" class="upload-input" multiple onchange="handleUploadSub(event,'${tid}','${iid}','${sid}')">+ Adicionar arquivo</label>
+                </div>
+              </div>
+            </div>`;
+          }).join('')}
+          ${currentRole!=='embaixador'?`<button class="add-sub-btn" onclick="openAddSub('${tid}','${iid}')">+ Sub-atividade</button>`:''}
+        </div>
+        ${currentRole!=='embaixador'&&subCount===0?`<div style="margin-left:20px;margin-bottom:6px"><button class="add-sub-btn" onclick="openAddSub('${tid}','${iid}');document.getElementById('subs-${tid}-${iid}').style.display='block'">+ Sub-atividade</button></div>`:''}
+        <!-- FOLLOW-UP ATIVIDADE -->
+        <div class="followup-wrap" style="margin:0 14px">
+          <div class="followup-title" onclick="toggleSection(this,'fu-item-${iid}')">Follow-up${followups.length>0?' ('+followups.length+')':''}</div>
+          <div class="followup-list" id="fu-item-${iid}">
+            ${renderFollowups(followups,iid)}
+            <div class="followup-form">
+              <textarea class="followup-input" id="fu-input-${iid}" placeholder="Registrar follow-up..." rows="1"></textarea>
+              <button class="followup-send" onclick="addFollowupItem('${tid}','${iid}')">Registrar</button>
+            </div>
+          </div>
+        </div>
+        <!-- UPLOAD ATIVIDADE -->
+        <div class="upload-wrap" style="margin:0 14px 10px">
+          <div class="upload-title" onclick="toggleSection(this,'up-item-${iid}')">Arquivos${uploads.length>0?' ('+uploads.length+')':''}</div>
+          <div class="upload-list" id="up-item-${iid}">
+            ${renderUploads(uploads)}
+            <label class="upload-area"><input type="file" class="upload-input" multiple onchange="handleUploadItem(event,'${tid}','${iid}')">+ Adicionar arquivo</label>
+          </div>
+        </div>
+      `;
+      ic.appendChild(r);
+    });
   });
   document.getElementById('ev-total').textContent=tot;
   document.getElementById('ev-crit').textContent=crit;
@@ -1486,6 +1933,54 @@ function renderTrilhas(data){
 window.openAddItem=function(tid){document.getElementById('mi-id').value='';document.getElementById('mi-tid').value=tid;['mi-nome','mi-resp','mi-prazo','mi-obs'].forEach(id=>document.getElementById(id).value='');document.getElementById('mi-status').value='pendente';document.getElementById('m-item-title').textContent='Nova entrega';openModal('m-item');};
 window.editItem=function(tid,iid){get(ref(db,`trilhas/${tid}/itens/${iid}`)).then(snap=>{const item=snap.val()||{};document.getElementById('mi-id').value=iid;document.getElementById('mi-tid').value=tid;['nome','resp','prazo','obs'].forEach(f=>document.getElementById(`mi-${f}`).value=item[f]||'');document.getElementById('mi-status').value=item.status||'pendente';document.getElementById('m-item-title').textContent='Editar entrega';openModal('m-item');});};
 window.saveItem=async function(){const tid=document.getElementById('mi-tid').value,iid=document.getElementById('mi-id').value,item={nome:document.getElementById('mi-nome').value,resp:document.getElementById('mi-resp').value,prazo:document.getElementById('mi-prazo').value,status:document.getElementById('mi-status').value,obs:document.getElementById('mi-obs').value};if(!item.nome)return;if(iid)await update(ref(db,`trilhas/${tid}/itens/${iid}`),item);else await push(ref(db,`trilhas/${tid}/itens`),item);closeModal('m-item');showToast('Salvo');};
+
+// EXCLUIR ITEM
+window.delItem=async function(tid,iid){
+  if(!confirm('Excluir esta atividade e todas as suas sub-atividades?'))return;
+  const {remove}=await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js');
+  await remove(ref(db,`trilhas/${tid}/itens/${iid}`));
+  showToast('Atividade excluída');
+};
+
+// ABRIR MODAL SUB-ATIVIDADE
+window.openAddSub=function(tid,iid){
+  document.getElementById('ms-tid').value=tid;
+  document.getElementById('ms-iid').value=iid;
+  document.getElementById('ms-sid').value='';
+  document.getElementById('ms-nome').value='';
+  document.getElementById('ms-status').value='pendente';
+  document.getElementById('m-sub-title').textContent='Nova sub-atividade';
+  openModal('m-sub');
+};
+
+// SALVAR SUB-ATIVIDADE
+window.saveSub=async function(){
+  const tid=document.getElementById('ms-tid').value;
+  const iid=document.getElementById('ms-iid').value;
+  const sid=document.getElementById('ms-sid').value;
+  const sub={
+    nome:document.getElementById('ms-nome').value,
+    status:document.getElementById('ms-status').value
+  };
+  if(!sub.nome){showToast('Preencha a descrição');return;}
+  if(sid)await update(ref(db,`trilhas/${tid}/itens/${iid}/subs/${sid}`),sub);
+  else await push(ref(db,`trilhas/${tid}/itens/${iid}/subs`),sub);
+  closeModal('m-sub');showToast('Sub-atividade salva');
+};
+
+// ATUALIZAR STATUS DE SUB-ATIVIDADE
+window.updateSubStatus=async function(tid,iid,sid,status){
+  await update(ref(db,`trilhas/${tid}/itens/${iid}/subs/${sid}`),{status});
+  showToast('Status atualizado');
+};
+
+// EXCLUIR SUB-ATIVIDADE
+window.delSub=async function(tid,iid,sid){
+  if(!confirm('Excluir esta sub-atividade?'))return;
+  const {remove}=await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js');
+  await remove(ref(db,`trilhas/${tid}/itens/${iid}/subs/${sid}`));
+  showToast('Sub-atividade excluída');
+};
 
 function renderRoteiro(){
   const w=document.getElementById('roteiro-wrap');w.innerHTML='';
