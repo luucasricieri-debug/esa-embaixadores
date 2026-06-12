@@ -379,6 +379,15 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);fon
 .rem-table td{font-size:13px;color:var(--text);padding:14px 16px;border-bottom:1px solid var(--border3);font-weight:300}
 .rem-table tr:last-child td{border-bottom:none}
 .rem-table tr:hover td{background:var(--cream3)}
+
+/* PRODUTOS ESA — cards grid 3 cols + flow steps */
+.cards-grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.flow-steps{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px}
+.flow-step{flex:1;min-width:140px;background:rgba(247,243,234,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:var(--r);padding:14px;text-align:center}
+.flow-num{font-family:'Cinzel',serif;font-size:18px;color:var(--ouro4);font-weight:500;margin-bottom:6px}
+.flow-txt{font-size:11px;color:rgba(247,243,234,0.85);line-height:1.6;font-weight:300}
+.flow-arrow{color:var(--ouro3);font-size:18px;flex:0 0 auto}
+@media(max-width:768px){.flow-arrow{display:none}.flow-steps{flex-direction:column}.flow-step{width:100%}}
 .rem-highlight{color:var(--verde2);font-family:'Cinzel',serif;font-size:16px;font-weight:500}
 
 /* SOL INVICTUS */
@@ -1222,6 +1231,7 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);fon
     <div class="topbar-nav" id="top-nav">
       <button class="nav-btn active" onclick="showPage('programa',this)">Programa</button>
       <button class="nav-btn" onclick="showPage('embaixadores',this)" id="nav-emb">Embaixadores</button>
+      <button class="nav-btn" onclick="showPage('produtos',this)">Produtos ESA</button>
       <button class="nav-btn" onclick="showPage('oportunidades',this)">Oportunidades</button>
       <button class="nav-btn" onclick="showPage('evento',this)" id="nav-evento">Evento 2026</button>
       <button class="nav-btn" onclick="showPage('usuarios',this)" id="nav-users" style="display:none">Usuários</button>
@@ -1239,6 +1249,7 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);fon
   <div class="mob-nav" id="mob-nav">
     <button class="nav-btn" onclick="showPage('programa',this);toggleMob()">Programa</button>
     <button class="nav-btn" onclick="showPage('embaixadores',this);toggleMob()">Embaixadores</button>
+    <button class="nav-btn" onclick="showPage('produtos',this);toggleMob()">Produtos ESA</button>
     <button class="nav-btn" onclick="showPage('oportunidades',this);toggleMob()">Oportunidades</button>
     <button class="nav-btn" onclick="showPage('evento',this);toggleMob()">Evento 2026</button>
     <button class="nav-btn" onclick="showPage('usuarios',this);toggleMob()" id="mnav-users" style="display:none">Usuários</button>
@@ -1380,6 +1391,144 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);fon
       <div class="sec">
         <div class="sec-hdr"><div class="sec-title"><span class="sec-num">01</span>Membros do programa</div><div id="emb-actions"></div></div>
         <div class="emb-grid" id="emb-grid"><div class="ld">Carregando</div></div>
+      </div>
+    </div>
+
+    <!-- PRODUTOS ESA -->
+    <div class="page" id="page-produtos">
+      <div class="ph"><div class="ph-eyebrow">Portfólio ESA</div><h2>Produtos <span>ESA</span></h2><p>As quatro frentes de negócio que sustentam nossa atuação no mercado de energia</p></div>
+
+      <!-- SISTEMAS DE AUTOCONSUMO -->
+      <div class="sec">
+        <div class="sec-hdr"><div class="sec-title"><span class="sec-num">01</span>Sistemas de Autoconsumo</div></div>
+        <div class="card" style="margin-bottom:16px">
+          <span class="card-icon">⚡</span>
+          <h3>Geração própria, economia real</h3>
+          <p>Projeto, fornecimento e instalação completa (EPC) de usinas solares para autoconsumo — local ou remoto. O cliente passa a gerar sua própria energia e abater o consumo via créditos de geração distribuída, regulamentados pela Lei 14.300/2022 e pelas resoluções da ANEEL.</p>
+        </div>
+        <div class="cards-grid-3">
+          <div class="card">
+            <span class="card-icon">🏭</span>
+            <h3>Autoconsumo Local</h3>
+            <p>Usina instalada no próprio imóvel — telhado, solo ou estrutura dedicada. Energia gerada é consumida diretamente, com excedente convertido em créditos para os meses seguintes.</p>
+          </div>
+          <div class="card">
+            <span class="card-icon">🏡</span>
+            <h3>Autoconsumo Remoto</h3>
+            <p>Usina em outro endereço, créditos abatidos em qualquer unidade consumidora no nome do titular, dentro da mesma área de concessão. Ideal para quem não tem espaço disponível no local de consumo.</p>
+          </div>
+          <div class="card">
+            <span class="card-icon">📈</span>
+            <h3>Independência Energética</h3>
+            <p>Redução progressiva da dependência da matriz hidrelétrica nacional, blindando o negócio contra reajustes tarifários — que somam em média 9,5% a.a. nos últimos 12 anos segundo a Copel-Dis.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ENERGIA POR ASSINATURA -->
+      <div class="sec">
+        <div class="sec-hdr"><div class="sec-title"><span class="sec-num">02</span>Energia por Assinatura</div></div>
+        <div class="card" style="margin-bottom:16px">
+          <span class="card-icon">☀️</span>
+          <h3>Energia solar por assinatura — sem investimento</h3>
+          <p>Com a ESA Energia, o cliente passa a consumir energia gerada em fazendas solares próprias da ESA, recebendo créditos energéticos via associação, contratados por assinatura mensal. A conta de luz fica mais barata desde o primeiro mês — sem obra, sem equipamento e sem burocracia.</p>
+        </div>
+        <div class="cards-grid-3">
+          <div class="card">
+            <span class="card-icon">💰</span>
+            <h3>Sem investimento inicial</h3>
+            <p>A ESA Energia desenvolve, instala e opera toda a infraestrutura. O cliente não compra equipamento nem assume obras — apenas assina o plano e começa a economizar.</p>
+          </div>
+          <div class="card">
+            <span class="card-icon">🌱</span>
+            <h3>Energia limpa e renovável</h3>
+            <p>100% da energia consumida vem de fontes solares, reduzindo emissões e fortalecendo a matriz elétrica nacional — mais limpa, diversificada e resiliente.</p>
+          </div>
+          <div class="card">
+            <span class="card-icon">🛠️</span>
+            <h3>Zero preocupação operacional</h3>
+            <p>Desenvolvimento, instalação, monitoramento e manutenção são 100% responsabilidade da ESA Energia. O cliente só usufrui da economia.</p>
+          </div>
+        </div>
+        <div class="card" style="margin-top:16px;background:linear-gradient(135deg,var(--verde2),var(--verde3));border:none">
+          <h3 style="color:var(--ouro4)">Como funciona</h3>
+          <div class="flow-steps">
+            <div class="flow-step"><div class="flow-num">1</div><div class="flow-txt">Energia gerada nas fazendas solares da ESA</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="flow-num">2</div><div class="flow-txt">Vira créditos energéticos na associação</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="flow-num">3</div><div class="flow-txt">Contratado por assinatura mensal</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step"><div class="flow-num">4</div><div class="flow-txt">Conta de luz fica mais barata</div></div>
+          </div>
+        </div>
+        <div class="alert" style="margin-top:16px;background:var(--cream3);border:1px solid var(--border2);color:var(--text3)">💡 Indicado para clientes com conta de energia acima de R$ 300/mês, em qualquer região do Brasil.</div>
+      </div>
+
+      <!-- ELETROMOBILIDADE -->
+      <div class="sec">
+        <div class="sec-hdr"><div class="sec-title"><span class="sec-num">03</span>Eletromobilidade</div></div>
+        <div class="card" style="margin-bottom:16px">
+          <span class="card-icon">🔌</span>
+          <h3>Infraestrutura de recarga que gera receita</h3>
+          <p>Fornecimento e instalação completa de estações de recarga para veículos elétricos — do projeto executivo à energização. A frota elétrica no Paraná já soma <strong>15.613 veículos</strong>, com <strong>1.608 unidades</strong> apenas na região de Londrina, um mercado em crescimento acelerado.</p>
+        </div>
+        <div style="overflow-x:auto">
+          <table class="rem-table">
+            <thead><tr><th>Carregador</th><th>Investimento</th><th>Recargas/dia</th><th>Lucro est./mês</th><th>Padrão de energia</th></tr></thead>
+            <tbody>
+              <tr><td><strong style="font-family:'Cinzel',serif;font-weight:400;font-size:12px">22 kW (AC-1T)</strong></td><td>R$ 20.591</td><td>1</td><td><span class="rem-highlight">R$ 929</span></td><td style="font-size:12px;color:var(--text4);font-weight:300">Trifásico / 63A</td></tr>
+              <tr><td><strong style="font-family:'Cinzel',serif;font-weight:400;font-size:12px">40 kW (DC-1T)</strong></td><td>R$ 78.498</td><td>3</td><td><span class="rem-highlight">R$ 3.253</span></td><td style="font-size:12px;color:var(--text4);font-weight:300">Trifásico / 125A</td></tr>
+              <tr><td><strong style="font-family:'Cinzel',serif;font-weight:400;font-size:12px">60 kW (DC-2T)</strong></td><td>R$ 110.014</td><td>4</td><td><span class="rem-highlight">R$ 5.842</span></td><td style="font-size:12px;color:var(--text4);font-weight:300">Trifásico / 175A</td></tr>
+              <tr><td><strong style="font-family:'Cinzel',serif;font-weight:400;font-size:12px">80 kW (DC-2T)</strong></td><td>R$ 141.503</td><td>5</td><td><span class="rem-highlight">R$ 7.303</span></td><td style="font-size:12px;color:var(--text4);font-weight:300">13,8kV/380V · 112,5kVA</td></tr>
+              <tr><td><strong style="font-family:'Cinzel',serif;font-weight:400;font-size:12px">120 kW (DC-2T)</strong></td><td>R$ 183.116</td><td>6</td><td><span class="rem-highlight">R$ 11.963</span></td><td style="font-size:12px;color:var(--text4);font-weight:300">13,8kV/380V · 150kVA</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="cards-grid-3" style="margin-top:16px">
+          <div class="card">
+            <span class="card-icon">⏱️</span>
+            <h3>Recarga rápida</h3>
+            <p>De 29 minutos (120kW) a 3h39 (22kW) para recarga de 20% a 90%, dependendo do modelo do veículo e potência do carregador.</p>
+          </div>
+          <div class="card">
+            <span class="card-icon">🏗️</span>
+            <h3>Projeto turn-key</h3>
+            <p>Engenharia, obra civil, instalação elétrica, comissionamento e testes. Cronograma médio de 90 dias da assinatura à energização.</p>
+          </div>
+          <div class="card">
+            <span class="card-icon">📊</span>
+            <h3>Receita por recarga</h3>
+            <p>Venda de energia a R$1,80/kWh com custo médio de R$0,65/kWh — margem operacional consistente para frotas corporativas e hubs públicos.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- BATERIAS -->
+      <div class="sec">
+        <div class="sec-hdr"><div class="sec-title"><span class="sec-num">04</span>Baterias de Armazenamento</div></div>
+        <div class="card" style="margin-bottom:16px">
+          <span class="card-icon">🔋</span>
+          <h3>Quando a energia falta, a produção não pode parar</h3>
+          <p>Sistemas de armazenamento (BESS) que garantem continuidade operacional diante de quedas, oscilações e instabilidades da rede elétrica — combinados ou não com geração solar própria.</p>
+        </div>
+        <div class="cards-grid-3">
+          <div class="card">
+            <span class="card-icon">🏭</span>
+            <h3>Aplicação Industrial</h3>
+            <p>Elimina paradas de produção, resets de máquinas e perdas por interrupção. Transição automática e silenciosa garante que linhas de produção continuem operando durante quedas de energia.</p>
+          </div>
+          <div class="card">
+            <span class="card-icon">🏠</span>
+            <h3>Residências de Alto Padrão</h3>
+            <p>Conforto e segurança contínuos — sem interrupções em sistemas de automação, climatização, segurança ou equipamentos sensíveis durante oscilações da rede.</p>
+          </div>
+          <div class="card">
+            <span class="card-icon">⚡</span>
+            <h3>Independência da rede</h3>
+            <p>Combinadas com geração solar, as baterias armazenam o excedente diurno para uso em horários de pico ou indisponibilidade — maximizando o aproveitamento da energia própria.</p>
+          </div>
+        </div>
       </div>
     </div>
 
