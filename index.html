@@ -442,6 +442,8 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);fon
 .otab.active{color:var(--verde);border-bottom-color:var(--verde);font-weight:500}
 .oport-panel{display:none}
 .oport-panel.active{display:block;animation:fadeUp 0.3s ease}
+.proj-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:28px}
+.proj-img{aspect-ratio:4/3;border-radius:var(--r2);box-shadow:0 2px 10px var(--shadow);background:var(--cream3);display:flex;align-items:center;justify-content:center;color:var(--text4);font-size:11px;font-weight:300;letter-spacing:1px;text-align:center}
 .asset-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
 .asset-card{background:var(--parch);border:1px solid var(--border2);border-radius:var(--r2);overflow:hidden;transition:all 0.25s;box-shadow:0 2px 10px var(--shadow)}
 .asset-card:hover{border-color:var(--verde4);box-shadow:0 6px 24px var(--shadow2)}
@@ -1540,9 +1542,32 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);fon
       <div class="oport-tabs">
         <button class="otab active" onclick="switchOport('usinas',this)">Usinas de Investimento</button>
         <button class="otab" onclick="switchOport('eletro',this)">Eletromobilidade</button>
+        <button class="otab" onclick="switchOport('postos',this)">Rede de Postos ESA</button>
       </div>
       <div class="oport-panel active" id="op-usinas"><div class="asset-grid" id="asset-grid-usinas"><div class="ld">Carregando</div></div></div>
       <div class="oport-panel" id="op-eletro"><div class="asset-grid" id="asset-grid-eletro"><div class="ld">Carregando</div></div></div>
+      <div class="oport-panel" id="op-postos">
+        <div class="ph">
+          <div class="ph-eyebrow">Novo conceito</div>
+          <h3>Rede de Postos Elétricos ESA</h3>
+          <p>Hubs de recarga e conveniência integrados à identidade ESA — projeto arquitetônico desenvolvido para pontos estratégicos de eletromobilidade, combinando recarga rápida, espaço de espera e loja de conveniência.</p>
+        </div>
+        <div class="proj-gallery">
+          <!-- TODO: substituir pela URL da imagem cropada sem rodapé Roveri -->
+          <div class="proj-img">Imagem do projeto</div>
+          <!-- TODO: substituir pela URL da imagem cropada sem rodapé Roveri -->
+          <div class="proj-img">Imagem do projeto</div>
+          <!-- TODO: substituir pela URL da imagem cropada sem rodapé Roveri -->
+          <div class="proj-img">Imagem do projeto</div>
+          <!-- TODO: substituir pela URL da imagem cropada sem rodapé Roveri -->
+          <div class="proj-img">Imagem do projeto</div>
+          <!-- TODO: substituir pela URL da imagem cropada sem rodapé Roveri -->
+          <div class="proj-img">Imagem do projeto</div>
+          <!-- TODO: substituir pela URL da imagem cropada sem rodapé Roveri -->
+          <div class="proj-img">Imagem do projeto</div>
+        </div>
+        <div class="asset-grid" id="asset-grid-postos"><div class="ld">Carregando</div></div>
+      </div>
     </div>
 
     <!-- EVENTO -->
@@ -1870,7 +1895,7 @@ window.editEmb=function(eid){get(ref(db,`embaixadores/${eid}`)).then(snap=>{cons
 window.saveEmb=async function(){const eid=document.getElementById('me-id').value;const emb={nome:document.getElementById('me-nome').value,setor:document.getElementById('me-setor').value,empresa:document.getElementById('me-empresa').value,motivo:document.getElementById('me-motivo').value,status:document.getElementById('me-status').value,convidado:document.getElementById('me-conv').value,foto:document.getElementById('me-foto').value};if(!emb.nome){showToast('Preencha o nome');return;}if(eid)await update(ref(db,`embaixadores/${eid}`),emb);else await push(ref(db,'embaixadores'),emb);closeModal('m-emb');showToast('Embaixador salvo');};
 
 function loadAssets(){
-  ['usinas','eletro'].forEach(tipo=>{
+  ['usinas','eletro','postos'].forEach(tipo=>{
     onValue(ref(db,`assets/${tipo}`),snap=>{
       let data=snap.val();
       if(!data&&AD[tipo]){const def={};AD[tipo].forEach(a=>{const k=push(ref(db,`assets/${tipo}`)).key;def[k]=a;});set(ref(db,`assets/${tipo}`),def);return;}
@@ -1882,10 +1907,10 @@ function renderAssets(tipo,list){
   const g=document.getElementById(`asset-grid-${tipo}`);g.innerHTML='';
   list.forEach(([aid,a])=>{
     const card=document.createElement('div');card.className='asset-card';
-    card.innerHTML=`<div class="asset-header"><div class="asset-patch"></div><div class="asset-tag">${tipo==='usinas'?'Usina de Investimento':'Eletromobilidade'}</div><div class="asset-nome">${a.nome||'—'}</div><div class="asset-loc">📍 ${a.loc||''}</div></div><div class="asset-body"><div class="asset-metrics"><div><div class="m-val">${a.retorno||'—'}</div><div class="m-lbl">Retorno est.</div></div><div><div class="m-val">${a.cota||'—'}</div><div class="m-lbl">Cota mínima</div></div><div><div class="m-val">${a.potencia||'—'}</div><div class="m-lbl">Potência</div></div></div><div class="asset-desc">${a.desc||''}</div>${a.regras?`<div class="asset-rules"><h5>Regras e condições</h5><ul>${a.regras.split('·').map(r=>`<li>${r.trim()}</li>`).join('')}</ul></div>`:''}<div class="asset-status ${a.status||'disponivel'}">${a.status==='disponivel'?'● Disponível':'◐ Em negociação'}</div>${currentRole==='diretoria'?`<button class="btn-secondary" style="margin-top:12px;font-size:10px;padding:5px 12px" onclick="editAsset('${aid}','${tipo}')">✎ Editar</button>`:''}</div>`;
+    card.innerHTML=`<div class="asset-header"><div class="asset-patch"></div><div class="asset-tag">${({usinas:'Usina de Investimento',eletro:'Eletromobilidade',postos:'Rede de Postos ESA'})[tipo]}</div><div class="asset-nome">${a.nome||'—'}</div><div class="asset-loc">📍 ${a.loc||''}</div></div><div class="asset-body"><div class="asset-metrics"><div><div class="m-val">${a.retorno||'—'}</div><div class="m-lbl">Retorno est.</div></div><div><div class="m-val">${a.cota||'—'}</div><div class="m-lbl">Cota mínima</div></div><div><div class="m-val">${a.potencia||'—'}</div><div class="m-lbl">Potência</div></div></div><div class="asset-desc">${a.desc||''}</div>${a.regras?`<div class="asset-rules"><h5>Regras e condições</h5><ul>${a.regras.split('·').map(r=>`<li>${r.trim()}</li>`).join('')}</ul></div>`:''}<div class="asset-status ${a.status||'disponivel'}">${a.status==='disponivel'?'● Disponível':'◐ Em negociação'}</div>${currentRole==='diretoria'?`<button class="btn-secondary" style="margin-top:12px;font-size:10px;padding:5px 12px" onclick="editAsset('${aid}','${tipo}')">✎ Editar</button>`:''}</div>`;
     g.appendChild(card);
   });
-  if(currentRole==='diretoria'){const a=document.createElement('div');a.className='add-asset-btn';a.innerHTML=`<span style="font-size:32px">+</span><span style="font-size:12px;font-weight:300">Adicionar ativo</span>`;a.onclick=()=>{document.getElementById('mas-id').value='';document.getElementById('mas-tipo').value=tipo;['mas-nome','mas-loc','mas-potencia','mas-ticket','mas-retorno','mas-cota','mas-desc','mas-regras'].forEach(id=>document.getElementById(id).value='');document.getElementById('mas-status').value='disponivel';document.getElementById('m-asset-title').textContent=tipo==='usinas'?'Nova Usina':'Novo Projeto';openModal('m-asset');};g.appendChild(a);}
+  if(currentRole==='diretoria'){const a=document.createElement('div');a.className='add-asset-btn';a.innerHTML=`<span style="font-size:32px">+</span><span style="font-size:12px;font-weight:300">Adicionar ativo</span>`;a.onclick=()=>{document.getElementById('mas-id').value='';document.getElementById('mas-tipo').value=tipo;['mas-nome','mas-loc','mas-potencia','mas-ticket','mas-retorno','mas-cota','mas-desc','mas-regras'].forEach(id=>document.getElementById(id).value='');document.getElementById('mas-status').value='disponivel';document.getElementById('m-asset-title').textContent=({usinas:'Nova Usina',eletro:'Novo Projeto',postos:'Novo Posto'})[tipo];openModal('m-asset');};g.appendChild(a);}
 }
 window.editAsset=function(aid,tipo){get(ref(db,`assets/${tipo}/${aid}`)).then(snap=>{const a=snap.val()||{};document.getElementById('mas-id').value=aid;document.getElementById('mas-tipo').value=tipo;['nome','loc','potencia','ticket','retorno','cota','desc','regras'].forEach(f=>document.getElementById(`mas-${f}`).value=a[f]||'');document.getElementById('mas-status').value=a.status||'disponivel';document.getElementById('m-asset-title').textContent='Editar Ativo';openModal('m-asset');});};
 window.saveAsset=async function(){const aid=document.getElementById('mas-id').value,tipo=document.getElementById('mas-tipo').value,a={nome:document.getElementById('mas-nome').value,loc:document.getElementById('mas-loc').value,potencia:document.getElementById('mas-potencia').value,ticket:document.getElementById('mas-ticket').value,retorno:document.getElementById('mas-retorno').value,cota:document.getElementById('mas-cota').value,desc:document.getElementById('mas-desc').value,regras:document.getElementById('mas-regras').value,status:document.getElementById('mas-status').value};if(!a.nome){showToast('Preencha o nome');return;}if(aid)await update(ref(db,`assets/${tipo}/${aid}`),a);else await push(ref(db,`assets/${tipo}`),a);closeModal('m-asset');showToast('Ativo salvo');};
