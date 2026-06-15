@@ -388,10 +388,12 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);fon
 .flow-txt{font-size:11px;color:rgba(247,243,234,0.85);line-height:1.6;font-weight:300}
 .flow-arrow{color:var(--ouro3);font-size:18px;flex:0 0 auto}
 @media(max-width:768px){.flow-arrow{display:none}.flow-steps{flex-direction:column}.flow-step{width:100%}}
-#page-produtos{position:relative}
-#page-produtos::after{content:'';position:fixed;bottom:0;left:0;right:0;height:340px;background:url('https://i.ibb.co/JF3BTTRZ/image-1365ce5f.png') bottom center/cover no-repeat;opacity:0.18;pointer-events:none;z-index:0;display:none}
-#page-produtos.active::after{display:block}
-#page-produtos .sec,#page-produtos .ph{position:relative;z-index:1}
+#page-produtos{position:relative;background:linear-gradient(180deg,rgba(22,46,30,0.92) 0%,rgba(10,20,14,0.88) 100%),url('https://i.ibb.co/JF3BTTRZ/image-1365ce5f.png') center top/cover no-repeat fixed;background-attachment:scroll}
+#page-produtos>*{position:relative;z-index:1}
+#page-produtos .card:not(.produto-banner){background:rgba(247,243,234,0.05);border:1px solid rgba(201,168,76,0.15)}
+#page-produtos .card:not(.produto-banner) h3{color:var(--cream)}
+#page-produtos .card:not(.produto-banner) p{color:rgba(247,243,234,0.7)}
+#page-produtos .sec-title{color:var(--cream)}
 .produto-banner{background:linear-gradient(135deg,rgba(10,26,16,0.82) 0%,rgba(22,46,30,0.75) 100%),url('https://i.ibb.co/0RwJQXdb/image-f8509185.png') center/cover no-repeat!important;border:1px solid rgba(201,168,76,0.25)!important;padding:28px 24px}
 .produto-banner h3{color:var(--ouro4);font-family:'Cinzel',serif;font-weight:400;letter-spacing:1px;margin-bottom:12px}
 .produto-banner p{color:rgba(247,243,234,0.85);font-size:13px;line-height:1.8;font-weight:300}
