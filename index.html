@@ -444,6 +444,15 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);fon
 .emb-footer{padding:10px 16px;border-top:1px solid var(--border3);display:flex;align-items:center;justify-content:space-between;background:var(--cream2)}
 .emb-ind-count{font-size:11px;color:var(--text3);font-weight:300}
 .emb-ind-count span{color:var(--verde);font-family:'Cinzel',serif;font-size:18px;margin-right:3px}
+/* GAMIFICAÇÃO EMBAIXADORES */
+.emb-gamif{display:flex;align-items:center;justify-content:space-around;padding:12px 14px;background:linear-gradient(135deg,rgba(22,46,30,0.06),rgba(201,168,76,0.04));border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);margin:8px 0 0}
+.gamif-item{display:flex;flex-direction:column;align-items:center;gap:2px;flex:1}
+.gamif-val{font-family:'Cinzel',serif;font-size:15px;color:var(--verde);font-weight:500;line-height:1}
+.gamif-lbl{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text4);font-weight:300}
+.gamif-sep{width:1px;height:28px;background:var(--border2);flex:0 0 1px}
+#page-embaixadores .gamif-val{color:var(--ouro4)}
+#page-embaixadores .emb-gamif{background:rgba(201,168,76,0.06);border-color:rgba(201,168,76,0.15)}
+#page-embaixadores .gamif-sep{background:rgba(201,168,76,0.2)}
 .add-emb-btn{background:var(--parch);border:1.5px dashed var(--border);border-radius:var(--r2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:all 0.2s;color:var(--text4);min-height:200px;box-shadow:0 2px 8px var(--shadow)}
 .add-emb-btn:hover{border-color:var(--verde3);color:var(--verde3)}
 
@@ -1651,6 +1660,10 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);fon
     <div class="f-group"><label class="f-label">Produto</label><select class="f-input" id="mind-produto"><option value="">Selecionar...</option><option value="usina-investimento">Usina de Investimento</option><option value="eletroposto">Eletroposto</option><option value="industria">Usina Industrial</option><option value="comercio">Usina Comercial</option><option value="residencia">Solar Residencial</option><option value="energia-assinatura">Energia por Assinatura</option></select></div>
     <div class="f-group"><label class="f-label">Responsável ESA</label><select class="f-input" id="mind-resp"><option value="">Selecionar...</option></select></div>
   </div>
+  <div class="form-grid">
+    <div class="f-group"><label class="f-label">Valor do negócio (R$)</label><input type="number" class="f-input" id="mind-valor" min="0" placeholder="Ex: 150000"></div>
+    <div class="f-group"><label class="f-label">Cotas de oportunidade</label><input type="number" class="f-input" id="mind-cotas" min="0" placeholder="Ex: 2"></div>
+  </div>
   <div class="f-group"><label class="f-label">Observações</label><textarea class="f-input" id="mind-obs" style="height:60px;resize:vertical" placeholder="Contexto..."></textarea></div>
   <div class="modal-actions"><button class="btn-secondary" onclick="closeModal('m-ind')">Cancelar</button><button class="btn-gold" onclick="saveIndicacao()">Registrar</button></div>
 </div></div>
@@ -1892,20 +1905,24 @@ function loadEmbs(){
   onValue(ref(db,'embaixadores'),snap=>{const data=snap.val()||{};document.getElementById('ev-emb').textContent=Object.keys(data).length;renderEmbs(Object.entries(data));});
 }
 
+function fmtBRL(v){if(v>=1000000)return 'R$ '+(v/1000000).toFixed(1).replace('.',',')+'M';if(v>=1000)return 'R$ '+(v/1000).toFixed(0)+'k';return 'R$ '+v.toFixed(0);}
 function renderEmbs(list){
   const g=document.getElementById('emb-grid');g.innerHTML='';
   list.forEach(([eid,emb])=>{
     const ini=(emb.nome||'?').split(' ').slice(0,2).map(n=>n[0]).join('').toUpperCase();
     const cnt=emb.indicacoes?Object.keys(emb.indicacoes).length:0;
+    const inds=emb.indicacoes?Object.values(emb.indicacoes):[];
+    const totalValor=inds.reduce((acc,i)=>acc+(parseFloat(i.valor)||0),0);
+    const totalCotas=inds.reduce((acc,i)=>acc+(parseInt(i.cotas)||0),0);
     const card=document.createElement('div');card.className=`emb-card ${emb.status==='confirmado'?'confirmado':''}`;
-    card.innerHTML=`<div class="emb-card-top"><div class="emb-jacket-mini"></div><div class="emb-patch-mini"></div><div class="emb-avatar">${emb.foto?`<img src="${emb.foto}" alt="${emb.nome}" onerror="this.parentElement.textContent='${ini}'">`:`${ini}`}</div></div><div class="emb-body"><div class="emb-nome">${emb.nome||'—'}</div><div class="emb-setor">${emb.setor||'—'}</div><div class="emb-empresa">${emb.empresa||''}</div>${emb.motivo?`<div class="emb-motivo">"${emb.motivo.substring(0,90)}${emb.motivo.length>90?'...':''}"</div>`:''}<div class="emb-st ${emb.status||'prospecto'}">${lblEmb(emb.status)}</div></div><div class="emb-footer"><div class="emb-ind-count"><span>${cnt}</span>indicações</div><div style="display:flex;gap:6px"><button class="btn-gold" style="padding:5px 12px;font-size:10px" onclick="openInd('${eid}')">+ Indicação</button>${currentRole!=='embaixador'?`<button class="btn-secondary" style="padding:5px 10px;font-size:10px" onclick="editEmb('${eid}')">✎</button>`:''}</div></div>`;
+    card.innerHTML=`<div class="emb-card-top"><div class="emb-jacket-mini"></div><div class="emb-patch-mini"></div><div class="emb-avatar">${emb.foto?`<img src="${emb.foto}" alt="${emb.nome}" onerror="this.parentElement.textContent='${ini}'">`:`${ini}`}</div></div><div class="emb-body"><div class="emb-nome">${emb.nome||'—'}</div><div class="emb-setor">${emb.setor||'—'}</div><div class="emb-empresa">${emb.empresa||''}</div>${emb.motivo?`<div class="emb-motivo">"${emb.motivo.substring(0,90)}${emb.motivo.length>90?'...':''}"</div>`:''}<div class="emb-st ${emb.status||'prospecto'}">${lblEmb(emb.status)}</div></div><div class="emb-gamif"><div class="gamif-item"><span class="gamif-val">${cnt}</span><span class="gamif-lbl">Indicações</span></div><div class="gamif-sep"></div><div class="gamif-item"><span class="gamif-val">${totalValor>0?fmtBRL(totalValor):'—'}</span><span class="gamif-lbl">Vendas</span></div><div class="gamif-sep"></div><div class="gamif-item"><span class="gamif-val">${totalCotas>0?totalCotas:'—'}</span><span class="gamif-lbl">Cotas</span></div></div><div class="emb-footer" style="border-top:none;padding-top:8px"><div></div><div style="display:flex;gap:6px"><button class="btn-gold" style="padding:5px 12px;font-size:10px" onclick="openInd('${eid}')">+ Indicação</button>${currentRole!=='embaixador'?`<button class="btn-secondary" style="padding:5px 10px;font-size:10px" onclick="editEmb('${eid}')">✎</button>`:''}</div></div>`;
     g.appendChild(card);
   });
   if(currentRole!=='embaixador'){const a=document.createElement('div');a.className='add-emb-btn';a.innerHTML=`<span style="font-size:32px">+</span><span style="font-size:12px;font-weight:300">Adicionar embaixador</span>`;a.onclick=()=>{openModal('m-emb');document.getElementById('me-id').value='';};g.appendChild(a);}
 }
 
-window.openInd=function(eid){document.getElementById('mind-emb-id').value=eid;['mind-nome','mind-empresa','mind-contato','mind-obs'].forEach(id=>document.getElementById(id).value='');document.getElementById('mind-produto').value='';document.getElementById('mind-resp').value='';openModal('m-ind');};
-window.saveIndicacao=async function(){const eid=document.getElementById('mind-emb-id').value;const ind={nome:document.getElementById('mind-nome').value,empresa:document.getElementById('mind-empresa').value,contato:document.getElementById('mind-contato').value,produto:document.getElementById('mind-produto').value,responsavel:document.getElementById('mind-resp').value,obs:document.getElementById('mind-obs').value,data:new Date().toLocaleDateString('pt-BR'),status:'novo'};if(!ind.nome){showToast('Preencha o nome');return;}await push(ref(db,`embaixadores/${eid}/indicacoes`),ind);closeModal('m-ind');showToast('Indicação registrada');};
+window.openInd=function(eid){document.getElementById('mind-emb-id').value=eid;['mind-nome','mind-empresa','mind-contato','mind-valor','mind-cotas','mind-obs'].forEach(id=>document.getElementById(id).value='');document.getElementById('mind-produto').value='';document.getElementById('mind-resp').value='';openModal('m-ind');};
+window.saveIndicacao=async function(){const eid=document.getElementById('mind-emb-id').value;const ind={nome:document.getElementById('mind-nome').value,empresa:document.getElementById('mind-empresa').value,contato:document.getElementById('mind-contato').value,produto:document.getElementById('mind-produto').value,responsavel:document.getElementById('mind-resp').value,valor:parseFloat(document.getElementById('mind-valor').value)||0,cotas:parseInt(document.getElementById('mind-cotas').value)||0,obs:document.getElementById('mind-obs').value,data:new Date().toLocaleDateString('pt-BR'),status:'novo'};if(!ind.nome){showToast('Preencha o nome');return;}await push(ref(db,`embaixadores/${eid}/indicacoes`),ind);closeModal('m-ind');showToast('Indicação registrada');};
 window.editEmb=function(eid){get(ref(db,`embaixadores/${eid}`)).then(snap=>{const emb=snap.val()||{};document.getElementById('me-id').value=eid;document.getElementById('me-nome').value=emb.nome||'';document.getElementById('me-setor').value=emb.setor||'';document.getElementById('me-empresa').value=emb.empresa||'';document.getElementById('me-motivo').value=emb.motivo||'';document.getElementById('me-status').value=emb.status||'prospecto';document.getElementById('me-conv').value=emb.convidado||'';document.getElementById('me-foto').value=emb.foto||'';document.getElementById('m-emb-title').textContent='Editar Embaixador';openModal('m-emb');});};
 window.saveEmb=async function(){const eid=document.getElementById('me-id').value;const emb={nome:document.getElementById('me-nome').value,setor:document.getElementById('me-setor').value,empresa:document.getElementById('me-empresa').value,motivo:document.getElementById('me-motivo').value,status:document.getElementById('me-status').value,convidado:document.getElementById('me-conv').value,foto:document.getElementById('me-foto').value};if(!emb.nome){showToast('Preencha o nome');return;}if(eid)await update(ref(db,`embaixadores/${eid}`),emb);else await push(ref(db,'embaixadores'),emb);closeModal('m-emb');showToast('Embaixador salvo');};
 
