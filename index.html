@@ -442,8 +442,6 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);fon
 .otab.active{color:var(--verde);border-bottom-color:var(--verde);font-weight:500}
 .oport-panel{display:none}
 .oport-panel.active{display:block;animation:fadeUp 0.3s ease}
-.proj-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:28px}
-.proj-img{aspect-ratio:4/3;border-radius:var(--r2);box-shadow:0 2px 10px var(--shadow);background:var(--cream3);display:flex;align-items:center;justify-content:center;color:var(--text4);font-size:11px;font-weight:300;letter-spacing:1px;text-align:center}
 .asset-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
 .asset-card{background:var(--parch);border:1px solid var(--border2);border-radius:var(--r2);overflow:hidden;transition:all 0.25s;box-shadow:0 2px 10px var(--shadow)}
 .asset-card:hover{border-color:var(--verde4);box-shadow:0 6px 24px var(--shadow2)}
@@ -1547,24 +1545,23 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);fon
       <div class="oport-panel active" id="op-usinas"><div class="asset-grid" id="asset-grid-usinas"><div class="ld">Carregando</div></div></div>
       <div class="oport-panel" id="op-eletro"><div class="asset-grid" id="asset-grid-eletro"><div class="ld">Carregando</div></div></div>
       <div class="oport-panel" id="op-postos">
-        <div class="ph">
+        <div class="ph" style="padding-bottom:12px">
           <div class="ph-eyebrow">Novo conceito</div>
-          <h3>Rede de Postos Elétricos ESA</h3>
+          <h2>Rede de Postos <span>Elétricos ESA</span></h2>
           <p>Hubs de recarga e conveniência integrados à identidade ESA — projeto arquitetônico desenvolvido para pontos estratégicos de eletromobilidade, combinando recarga rápida, espaço de espera e loja de conveniência.</p>
         </div>
-        <div class="proj-gallery">
-          <!-- TODO: substituir pela URL da imagem cropada sem rodapé Roveri -->
-          <div class="proj-img">Imagem do projeto</div>
-          <!-- TODO: substituir pela URL da imagem cropada sem rodapé Roveri -->
-          <div class="proj-img">Imagem do projeto</div>
-          <!-- TODO: substituir pela URL da imagem cropada sem rodapé Roveri -->
-          <div class="proj-img">Imagem do projeto</div>
-          <!-- TODO: substituir pela URL da imagem cropada sem rodapé Roveri -->
-          <div class="proj-img">Imagem do projeto</div>
-          <!-- TODO: substituir pela URL da imagem cropada sem rodapé Roveri -->
-          <div class="proj-img">Imagem do projeto</div>
-          <!-- TODO: substituir pela URL da imagem cropada sem rodapé Roveri -->
-          <div class="proj-img">Imagem do projeto</div>
+        <div class="sec">
+          <div class="sec-hdr"><div class="sec-title">Conceito Arquitetônico</div></div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:24px">
+            <img src="https://i.ibb.co/tw5wYPm5/posto-01.jpg" alt="Posto ESA - Vista externa" style="width:100%;border-radius:var(--r2);object-fit:cover;height:200px;box-shadow:0 2px 10px var(--shadow)">
+            <img src="https://i.ibb.co/qY80RYK6/posto-02.jpg" alt="Posto ESA - Vista lateral" style="width:100%;border-radius:var(--r2);object-fit:cover;height:200px;box-shadow:0 2px 10px var(--shadow)">
+            <img src="https://i.ibb.co/WW9Tym5Q/posto-03.jpg" alt="Posto ESA - Ângulo frente" style="width:100%;border-radius:var(--r2);object-fit:cover;height:200px;box-shadow:0 2px 10px var(--shadow)">
+            <img src="https://i.ibb.co/C5Fc9Ngy/posto-04.jpg" alt="Posto ESA - Interior recepção" style="width:100%;border-radius:var(--r2);object-fit:cover;height:200px;box-shadow:0 2px 10px var(--shadow)">
+            <img src="https://i.ibb.co/tMTmS8MB/posto-05.jpg" alt="Posto ESA - Lounge espera" style="width:100%;border-radius:var(--r2);object-fit:cover;height:200px;box-shadow:0 2px 10px var(--shadow)">
+            <img src="https://i.ibb.co/Lz95YMvx/posto-06.jpg" alt="Posto ESA - Cafeteria" style="width:100%;border-radius:var(--r2);object-fit:cover;height:200px;box-shadow:0 2px 10px var(--shadow)">
+            <img src="https://i.ibb.co/Dgz2S8q1/posto-07.jpg" alt="Posto ESA - Vista opção 2" style="width:100%;border-radius:var(--r2);object-fit:cover;height:200px;box-shadow:0 2px 10px var(--shadow)">
+            <img src="https://i.ibb.co/B2GbpQF0/posto-08.jpg" alt="Posto ESA - Vista frontal opção 2" style="width:100%;border-radius:var(--r2);object-fit:cover;height:200px;box-shadow:0 2px 10px var(--shadow)">
+          </div>
         </div>
         <div class="asset-grid" id="asset-grid-postos"><div class="ld">Carregando</div></div>
       </div>
