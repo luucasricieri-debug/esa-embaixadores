@@ -376,7 +376,7 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);fon
 /* TABLE */
 .rem-table{width:100%;border-collapse:collapse;background:var(--parch);border-radius:var(--r2);overflow:hidden;box-shadow:0 2px 10px var(--shadow)}
 .rem-table th{font-size:9px;letter-spacing:2px;color:var(--text4);text-transform:uppercase;padding:12px 16px;background:var(--cream3);font-weight:400;text-align:left;border-bottom:1px solid var(--border2)}
-.rem-table td{font-size:13px;color:var(--text);padding:14px 16px;border-bottom:1px solid var(--border3);font-weight:300}
+.rem-table td{font-size:13px;color:var(--text);padding:14px 16px;border-bottom:1px solid var(--border3);font-weight:300;background:var(--parch)}
 .rem-table tr:last-child td{border-bottom:none}
 .rem-table tr:hover td{background:var(--cream3)}
 
@@ -388,6 +388,15 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);fon
 .flow-txt{font-size:11px;color:rgba(247,243,234,0.85);line-height:1.6;font-weight:300}
 .flow-arrow{color:var(--ouro3);font-size:18px;flex:0 0 auto}
 @media(max-width:768px){.flow-arrow{display:none}.flow-steps{flex-direction:column}.flow-step{width:100%}}
+#page-produtos{position:relative}
+#page-produtos::after{content:'';position:fixed;bottom:0;left:0;right:0;height:340px;background:url('https://i.ibb.co/JF3BTTRZ/image-1365ce5f.png') bottom center/cover no-repeat;opacity:0.18;pointer-events:none;z-index:0;display:none}
+#page-produtos.active::after{display:block}
+#page-produtos .sec,#page-produtos .ph{position:relative;z-index:1}
+.produto-banner{background:linear-gradient(135deg,rgba(10,26,16,0.82) 0%,rgba(22,46,30,0.75) 100%),url('https://i.ibb.co/0RwJQXdb/image-f8509185.png') center/cover no-repeat!important;border:1px solid rgba(201,168,76,0.25)!important;padding:28px 24px}
+.produto-banner h3{color:var(--ouro4);font-family:'Cinzel',serif;font-weight:400;letter-spacing:1px;margin-bottom:12px}
+.produto-banner p{color:rgba(247,243,234,0.85);font-size:13px;line-height:1.8;font-weight:300}
+.produto-banner .card-icon{font-size:32px;display:block;margin-bottom:14px}
+.produto-banner strong{color:var(--ouro3);font-weight:500}
 .rem-highlight{color:var(--verde2);font-family:'Cinzel',serif;font-size:16px;font-weight:500}
 
 /* SOL INVICTUS */
@@ -1401,7 +1410,7 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);fon
       <!-- SISTEMAS DE AUTOCONSUMO -->
       <div class="sec">
         <div class="sec-hdr"><div class="sec-title"><span class="sec-num">01</span>Sistemas de Autoconsumo</div></div>
-        <div class="card" style="margin-bottom:16px">
+        <div class="card produto-banner" style="margin-bottom:16px">
           <span class="card-icon">⚡</span>
           <h3>Geração própria, economia real</h3>
           <p>Projeto, fornecimento e instalação completa (EPC) de usinas solares para autoconsumo — local ou remoto. O cliente passa a gerar sua própria energia e abater o consumo via créditos de geração distribuída, regulamentados pela Lei 14.300/2022 e pelas resoluções da ANEEL.</p>
@@ -1428,7 +1437,7 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);fon
       <!-- ENERGIA POR ASSINATURA -->
       <div class="sec">
         <div class="sec-hdr"><div class="sec-title"><span class="sec-num">02</span>Energia por Assinatura</div></div>
-        <div class="card" style="margin-bottom:16px">
+        <div class="card produto-banner" style="margin-bottom:16px">
           <span class="card-icon">☀️</span>
           <h3>Energia solar por assinatura — sem investimento</h3>
           <p>Com a ESA Energia, o cliente passa a consumir energia gerada em fazendas solares próprias da ESA, recebendo créditos energéticos via associação, contratados por assinatura mensal. A conta de luz fica mais barata desde o primeiro mês — sem obra, sem equipamento e sem burocracia.</p>
@@ -1468,7 +1477,7 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);fon
       <!-- ELETROMOBILIDADE -->
       <div class="sec">
         <div class="sec-hdr"><div class="sec-title"><span class="sec-num">03</span>Eletromobilidade</div></div>
-        <div class="card" style="margin-bottom:16px">
+        <div class="card produto-banner" style="margin-bottom:16px">
           <span class="card-icon">🔌</span>
           <h3>Infraestrutura de recarga que gera receita</h3>
           <p>Fornecimento e instalação completa de estações de recarga para veículos elétricos — do projeto executivo à energização. A frota elétrica no Paraná já soma <strong>15.613 veículos</strong>, com <strong>1.608 unidades</strong> apenas na região de Londrina, um mercado em crescimento acelerado.</p>
@@ -1507,7 +1516,7 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);fon
       <!-- BATERIAS -->
       <div class="sec">
         <div class="sec-hdr"><div class="sec-title"><span class="sec-num">04</span>Baterias de Armazenamento</div></div>
-        <div class="card" style="margin-bottom:16px">
+        <div class="card produto-banner" style="margin-bottom:16px">
           <span class="card-icon">🔋</span>
           <h3>Quando a energia falta, a produção não pode parar</h3>
           <p>Sistemas de armazenamento (BESS) que garantem continuidade operacional diante de quedas, oscilações e instabilidades da rede elétrica — combinados ou não com geração solar própria.</p>
